@@ -46,6 +46,9 @@ def get_args():
     args = parser.parse_args()
     if args.password is None:
         args.password = getpass.getpass()
+    # Maximum password length is 15 (sign in page enforces this limit, API does not)
+    if len(args.password) > 15:
+        args.password = args.password[:15]
 
     return args
 
